@@ -14,14 +14,14 @@ build all the pieces necessary for a workshop.
 
 ## Quickstart
 
-- [ ] Clone this repo, fork and rename it, or create a repo from this template
+- [x] Clone this repo, fork and rename it, or create a repo from this template
 - [ ] Edit `DESCRIPTION` file
-  - [ ] Change package name
-  - [ ] Change title and description
-  - [ ] Change authors
+  - [x] Change package name
+  - [x] Change title and description
+  - [x] Change authors
   - [ ] Check dependencies
-  - [ ] Change DockerImage tag
-- [ ] Edit '_pkgdown.yml' and`.github/workflows/basic_checks.yaml`
+  - [x] Change DockerImage tag
+- [x] Edit '_pkgdown.yml' and`.github/workflows/basic_checks.yaml`
 - [ ] Write a normal R package that can be installed
 - [ ] Include one or more vignettes that will constitute the workshop materials
 

@@ -1,4 +1,4 @@
-url: https://seandavi.github.io/BuildABiocWorkshop
+url: https://drighelli.github.io/SpatialExperiment_Bioc2021
 
 template:
   params:
@@ -6,13 +6,13 @@ template:
     #ganalytics: UA-99999999-9
 
 home:
-  title: "BuildABiocWorkshop"
+  title: "SpatialExperiment_Bioc2021"
   type: inverse
 
 
 navbar:
   right:
    - icon: fa-github
-     href: https://github.com/seandavi/BuildABiocWorkshop
+     href: https://github.com/drighelli/SpatialExperiment_Bioc2021
      
 

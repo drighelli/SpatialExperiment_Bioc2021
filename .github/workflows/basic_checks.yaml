@@ -2,7 +2,7 @@ on: [push, pull_request]
 
 env:
   cache-version: v1
-  repo-name: seandavi/buildabiocworkshop
+  repo-name: drighelli/SpatialExperiment_Bioc2021 # DockerHub image repo used in last section of this file
 
 jobs:
   job1:

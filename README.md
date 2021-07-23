@@ -1,53 +1,53 @@
-# BuildABiocWorkshop
+# Bioc2021 SpatialExperiment Workshop
 
-This package is a template for building a Bioconductor workshop. The package
-includes Github actions to:
+This three-parts workshop provides basics backgroud and the instruments 
+to start to work with spatial transcriptomics with R/Bioconductor.
 
-1. Set up bioconductor/bioconductor_docker:devel on Github resources
-2. Install package dependencies for your package (based on the `DESCRIPTION` file)
-3. Run `rcmdcheck::rcmdcheck`
-4. Build a pkgdown website and push it to github pages
-5. Build a docker image with the installed package and dependencies
+The first part is an overview of the most widely used technologies for 
+spatially resolved transcriptomics, such as seqFISH and 10x Genomics Visium, 
+and the main differences between them.
 
-## Responsibilities
+The second part is mainly focused on the `SpatialExperiment` class and how to handle
+its methods for storing and retrieving spatial coordinates, images, and how to manage them.
 
-This year, package authors will be primarily responsible for:
+The third part will show how to store/retrieve already stored spatial datasets 
+from the `STdata` and `10xVisiumData` packages and how to generate plots 
+with `ggspavis`.
 
-1. Creating a landing site of their choosing for their workshops (a website). This website should be listed in the `DESCRIPTION` file as the `URL`.
-2. Creating a docker account and image that will contain workshop materials and the installed packages necessary to run those materials. The name of the resulting docker image, including "tag" if desired, should be listed in a non-standard tag, `DockerImage:` in the `DESCRIPTION` file. 
+The workshop will end with a mini-challenge for the attendees to handle with 
+provided tools during the sessions.
 
-Both of those tasks can be accomplished using the Github actions included in this template package. The vignette accompanying this package describes how to accomplish both of these tasks.
+# Authors:
 
-## Details
+- [Dario Righelli](github.com/drighelli) (dario.righelli@gmail.com)
+- [Helena L. Crowell](github.com/HelenaLC) (helena.crowell@uzh.ch)
+- [Lukas M. Weber](https://lmweber.org/) (lukas.weber@jhu.edu)
 
-For detailed instructions, see the `How to build a workshop` article/vignette.
 
-## Results of successful deployment
+# Pre-requisites
 
-- A working docker image that contains the installed package and dependencies.
-- An up-to-date `pkgdown` website at https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/
-- Docker image will be tagged with `latest`, `sha-XXXXXX` where `XXXXXX` is the hash of the current `master` commit, and `master`. 
+- Basic R syntax knowledge and R data structures
+- Familiarity with [SingleCellExperiment](https://bioconductor.org/packages/SingleCellExperiment/) and/or [SummarizedExperiment](https://bioconductor.org/packages/SummarizedExperiment/) classes 
 
-## To use the resulting image:
+
+
+# Available Resources
+
+- Link to the `pkgdown` [website](https://drighelli.github.io/EuroBioc2020_SpatialWorkshop/).
+- Link to [Docker image](https://hub.docker.com/r/drighelli/eurobioc2020spatialworkshop).
+- The `SpatialExperiment` [link](https://bioconductor.org/packages/SpatialExperiment/). 
+- The `STdata` package [link](https://bioconductor.org/packages/STdata).
+- The `10xVisiumData` package [link](https://bioconductor.org/packages/10xVisiumData).
+- The `ggspavis` package [link](https://github.com/lmweber/ggspavis).
+
+
+## To use the Docker image:
+
+We highly suggest to use the docker image within all the needed material.
 
 ```sh
-docker run -e PASSWORD=<choose_a_password_for_rstudio> -p 8787:8787 YOURDOCKERIMAGENAME
-```
-Once running, navigate to https://localhost:8787/ and then login with `rstudio`:`yourchosenpassword`. 
-
-To try with **this** repository docker image:
-
-```sh
-docker run -e PASSWORD=abc -p 8787:8787 seandavi/buildabiocworkshop2020
+docker run -e PASSWORD=<SET_A_PASSWORD> -p 8787:8787 drighelli/eurobioc2020spatialworkshop
 ```
 
-*NOTE*: Running docker that uses the password in plain text like above exposes the password to others 
-in a multi-user system (like a shared workstation or compute node). In practice, consider using an environment 
-variable instead of plain text to pass along passwords and other secrets in docker command lines. 
+Once running, navigate to https://localhost:8787/ and then login with `rstudio`:`<YourChosenPassword>`.
 
-
-## Whatcha get
-
-https://seandavi.github.io/BuildABiocWorkshop
-
-![dockerhub](https://github.com/seandavi/BuildABiocWorkshop/raw/master/inst/images/dockerhub_result.png)
