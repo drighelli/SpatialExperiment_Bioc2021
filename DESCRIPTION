@@ -60,7 +60,7 @@ Depends:
 Imports:
     SpatialExperiment,
     STdata,
-    10xVisiumData,
+    TENxVisiumData,
     ggspavis
 Suggests: 
     knitr,
