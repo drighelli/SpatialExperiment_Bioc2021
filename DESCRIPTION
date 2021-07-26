@@ -59,7 +59,7 @@ Depends:
     ggplot2
 Imports:
     SpatialExperiment,
-    STdata,
+    STexampleData,
     TENxVisiumData,
     ggspavis
 Suggests: 
