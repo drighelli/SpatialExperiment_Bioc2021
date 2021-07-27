@@ -2,7 +2,7 @@ on: [push, pull_request]
 
 env:
   cache-version: v1
-  repo-name: drighelli/SpatialExperimentBioc2021 # DockerHub image repo used in last section of this file
+  repo-name: drighelli/spatialexperiment_bioc2021 # DockerHub image repo used in last section of this file
 
 jobs:
   job1:
