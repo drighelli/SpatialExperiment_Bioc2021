@@ -71,4 +71,4 @@ Remotes:
 URL: https://drighelli.github.io/SpatialExperiment_Bioc2021/
 BugReports: https://github.com/drighelli/SpatialExperiment_Bioc2021/issues/new/
 VignetteBuilder: knitr
-DockerImage: drighelli/SpatialExperiment_Bioc2021:latest
+DockerImage: drighelli/SpatialExperimentBioc2021:latest
