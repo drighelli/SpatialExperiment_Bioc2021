@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   Introduction: Introduction.html
-last_built: 2021-07-28T09:40Z
+last_built: 2021-07-28T13:34Z
 urls:
   reference: https://drighelli.github.io/SpatialExperiment_Bioc2021/reference
   article: https://drighelli.github.io/SpatialExperiment_Bioc2021/articles
