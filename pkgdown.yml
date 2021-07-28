@@ -2,9 +2,8 @@ pandoc: 2.11.4
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  HOWTO_BUILD_WORKSHOP: HOWTO_BUILD_WORKSHOP.html
-  workshop_example: workshop_example.html
-last_built: 2021-07-28T08:18Z
+  Introduction: Introduction.html
+last_built: 2021-07-28T09:40Z
 urls:
   reference: https://drighelli.github.io/SpatialExperiment_Bioc2021/reference
   article: https://drighelli.github.io/SpatialExperiment_Bioc2021/articles
