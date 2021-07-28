@@ -33,10 +33,10 @@ provided tools during the sessions.
 
 # Available Resources
 
-- Link to the `pkgdown` [website](https://drighelli.github.io/EuroBioc2020_SpatialWorkshop/).
-- Link to [Docker image](https://hub.docker.com/r/drighelli/eurobioc2020spatialworkshop).
+- Link to the `pkgdown` [website](https://drighelli.github.io/SpatialExperiment_Bioc2021/).
+- Link to [Docker image](https://hub.docker.com/r/drighelli/spatialexperiment_bioc2021).
 - The `SpatialExperiment` [link](https://bioconductor.org/packages/SpatialExperiment/). 
-- The `STdata` package [link](https://bioconductor.org/packages/STdata).
+- The `STexampleData` package [link](https://bioconductor.org/packages/STexampleData).
 - The `10xVisiumData` package [link](https://bioconductor.org/packages/10xVisiumData).
 - The `ggspavis` package [link](https://github.com/lmweber/ggspavis).
 
@@ -46,7 +46,7 @@ provided tools during the sessions.
 We highly suggest to use the docker image within all the needed material.
 
 ```sh
-docker run -e PASSWORD=<SET_A_PASSWORD> -p 8787:8787 drighelli/eurobioc2020spatialworkshop
+docker run -e PASSWORD=<SET_A_PASSWORD> -p 8787:8787 drighelli/spatialexperiment_bioc2021
 ```
 
 Once running, navigate to https://localhost:8787/ and then login with `rstudio`:`<YourChosenPassword>`.
