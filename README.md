@@ -11,7 +11,7 @@ The second part is mainly focused on the `SpatialExperiment` class and how to ha
 its methods for storing and retrieving spatial coordinates, images, and how to manage them.
 
 The third part will show how to store/retrieve already stored spatial datasets 
-from the `STdata` and `10xVisiumData` packages and how to generate plots 
+from the `STexampleData` and `10xVisiumData` packages and how to generate plots 
 with `ggspavis`.
 
 The workshop will end with a mini-challenge for the attendees to handle with 
@@ -37,7 +37,7 @@ provided tools during the sessions.
 - Link to [Docker image](https://hub.docker.com/r/drighelli/spatialexperiment_bioc2021).
 - The `SpatialExperiment` [link](https://bioconductor.org/packages/SpatialExperiment/). 
 - The `STexampleData` package [link](https://bioconductor.org/packages/STexampleData).
-- The `10xVisiumData` package [link](https://bioconductor.org/packages/10xVisiumData).
+- The `TENxVisiumData` package [link](https://bioconductor.org/packages/TENxVisiumData).
 - The `ggspavis` package [link](https://github.com/lmweber/ggspavis).
 
 
