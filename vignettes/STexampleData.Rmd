@@ -1,0 +1,142 @@
+---
+title: "3. The STdata package"
+author:
+  - name: "Lukas M. Weber"
+    affiliation: "Johns Hopkins Bloomberg School of Public Health, Baltimore, USA"
+    email: "lukas.weber@jhu.edu"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{3. The STdata package}
+    %\VignetteEncoding{UTF-8}
+    %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+# STdata package
+
+The [STdata](https://github.com/lmweber/STdata) package provides access to a collection of spatially resolved transcriptomics datasets, which have been formatted into the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) Bioconductor object class.
+
+These datasets have been collected from various publicly available sources, and will cover several technological platforms.
+
+We provide these datasets as `SpatialExperiment` objects to make them easier to access, so that we and others can use them for examples, demonstrations, tutorials, and other purposes.
+
+
+# Datasets
+
+The current version of the package contains the following datasets, both from the 10x Genomics Visium platform.
+
+The package is under active development, and we will add several additional datasets in the near future (see also Challenges discussed at Birds-of-a-Feather workshop).
+
+- `mouse_coronal` (10x Genomics Visium): a single coronal section from the mouse brain, spanning one hemisphere. Previously provided by 10x Genomics from their [website](https://support.10xgenomics.com/spatial-gene-expression/datasets/1.1.0/V1_Adult_Mouse_Brain).
+
+- `human_DLPFC` (10x Genomics Visium): a single sample (sample 151673) from our previously published dataset consisting of 12 samples from the human dorsolateral prefrontal cortex (DLPFC) in the human brain, from 3 neurotypical donors. The original dataset is available via the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package, and is described in our paper [Maynard and Collado-Torres et al. 2020](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1).
+
+
+# Install package
+
+The latest versions of the `SpatialExperiment` and `STdata` packages can be installed from GitHub. These will be moved to Bioconductor (devel) in the near future.
+
+In the code below, we have commented out the installation code, so that this is not automatically run when we compile the workshop materials. However, on your own system, you can un-comment these lines and run them to install the packages if necessary.
+
+```{r, message=FALSE}
+# install SpatialExperiment package (note "devel" branch)
+# remotes::install_github("drighelli/SpatialExperiment", ref = "devel")
+
+# install STdata package
+# remotes::install_github("lmweber/STdata")
+```
+
+
+# Load data
+
+Next, we run a short example showing how to load one of the datasets from the `STdata` package. This will be loaded as a `SpatialExperiment` object. Then, we inspect the object dimensions and structure.
+
+```{r, message=FALSE}
+# load packages
+library(SpatialExperiment)
+library(STdata)
+```
+
+```{r, message=FALSE}
+# load data object
+spe <- load_data("mouse_coronal")
+```
+
+```{r, message=FALSE}
+# inspect data object
+spe
+dim(spe)
+assayNames(spe)
+rowData(spe)
+colData(spe)
+spatialCoords(spe)
+imgData(spe)
+```
+
+
+# Plot data
+
+We can also create a simple plot of the dataset, to check that it has been loaded correctly. We can use plotting functions available in the [ggspavis](https://github.com/lmweber/ggspavis) package.
+
+The [ggspavis](https://github.com/lmweber/ggspavis) package is also available from GitHub, so we install this first (if not already installed).
+
+Then, we load the package, and create a plot.
+
+```{r, message=FALSE}
+# install ggspavis package
+# remotes::install_github("lmweber/ggspavis")
+```
+
+```{r, message=FALSE}
+# load package
+library(ggspavis)
+```
+
+```{r, message=FALSE, out.width="65%"}
+# create plot
+plotSpots(spe)
+```
+
+
+# Exercise
+
+The above plot does not show much -- only the layout of the Visium spots under tissue in this sample. This is useful as a check that the dataset has been loaded correctly, but is not a very interesting plot.
+
+Next, we will create a more interesting plot showing ground truth cluster labels for a different dataset, and then continue with an exercise to modify this plot to display different information.
+
+For this exercise, we will use the "human DLPFC" dataset (which contains ground truth cluster labels).
+
+```{r, message=FALSE}
+# load data object
+spe <- load_data("human_DLPFC")
+```
+
+```{r, message=FALSE, out.width="60%"}
+# create basic plot
+plotSpots(spe)
+```
+
+```{r, message=FALSE, out.width="70%"}
+# create plot showing ground truth cluster labels
+plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
+```
+
+
+For the exercise, try to modify this plot to show a continuous color gradient of total UMI counts per spot (instead of ground truth cluster labels).
+
+Below are some hints for how to do this.
+
+- inspect the `spe` object to check how the data is stored (e.g. assays, row data, column data, spatial coordinates)
+- check the help page of the plotting function (with `?plotSpots`) to check the required arguments
+- are the values you need (total counts per spot) stored somewhere in the object? e.g. row data or column data? if not, how could you calculate them and store them in the object, so that the plotting function can access them?
+
+
+<!-- Solution -->
+<!-- colData(spe)$sum <- colSums(counts(spe)) -->
+<!-- plotSpots(spe, continuous = "sum", palette = "navy") -->
+
+<!-- Alternatively: another similar plot -->
+<!-- (but not the solution; this shows cell counts per spot instead of UMI counts per spot) -->
+<!-- plotSpots(spe, continuous = "cell_count", palette = "navy") -->
+
