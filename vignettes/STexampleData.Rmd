@@ -1,87 +1,104 @@
 ---
-title: "3. The STdata package"
+title: "3. The STexampleData package"
 author:
   - name: "Lukas M. Weber"
     affiliation: "Johns Hopkins Bloomberg School of Public Health, Baltimore, USA"
     email: "lukas.weber@jhu.edu"
 output: rmarkdown::html_vignette
 vignette: >
-    %\VignetteIndexEntry{3. The STdata package}
+    %\VignetteIndexEntry{3. The STexampleData package}
     %\VignetteEncoding{UTF-8}
     %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
 ---
 
-# STdata package
+# STexampleData package
 
-The [STdata](https://github.com/lmweber/STdata) package provides access to a collection of spatially resolved transcriptomics datasets, which have been formatted into the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) Bioconductor object class.
+The [STexampleData](http://bioconductor.org/packages/STexampleData) package provides access to several spatially resolved transcriptomics datasets, which have been formatted into the [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment) Bioconductor class.
 
-These datasets have been collected from various publicly available sources, and will cover several technological platforms.
+These datasets have been collected from various publicly available sources, and cover several technological platforms.
 
 We provide these datasets as `SpatialExperiment` objects to make them easier to access, so that we and others can use them for examples, demonstrations, tutorials, and other purposes.
+
+Additional datasets from the 10x Genomics Visium platform are also available in the [TENxVisiumData](https://bioconductor.org/packages/TENxVisiumData) package (developed by Helena Crowell).
 
 
 # Datasets
 
-The current version of the package contains the following datasets, both from the 10x Genomics Visium platform.
+The package currently contains the following datasets:
 
-The package is under active development, and we will add several additional datasets in the near future (see also Challenges discussed at Birds-of-a-Feather workshop).
+- `Visium_humanDLPFC` (10x Genomics Visium): A single sample (sample 151673) of human brain dorsolateral prefrontal cortex (DLPFC) in the human brain, measured using the 10x Genomics Visium platform. This is a subset of the full dataset containing 12 samples from 3 neurotypical donors, published by [Maynard and Collado-Torres et al. (2021)](https://www.nature.com/articles/s41593-020-00787-0). The full dataset is available from the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package.
 
-- `mouse_coronal` (10x Genomics Visium): a single coronal section from the mouse brain, spanning one hemisphere. Previously provided by 10x Genomics from their [website](https://support.10xgenomics.com/spatial-gene-expression/datasets/1.1.0/V1_Adult_Mouse_Brain).
+- `Visium_mouseCoronal` (10x Genomics Visium): A single coronal section from the mouse brain, spanning one hemisphere. This dataset was previously released by 10x Genomics on their [website](https://support.10xgenomics.com/spatial-gene-expression/datasets/1.1.0/V1_Adult_Mouse_Brain).
 
-- `human_DLPFC` (10x Genomics Visium): a single sample (sample 151673) from our previously published dataset consisting of 12 samples from the human dorsolateral prefrontal cortex (DLPFC) in the human brain, from 3 neurotypical donors. The original dataset is available via the [spatialLIBD](http://bioconductor.org/packages/spatialLIBD) Bioconductor package, and is described in our paper [Maynard and Collado-Torres et al. 2020](https://www.biorxiv.org/content/10.1101/2020.02.28.969931v1).
+- `seqFISH_mouseEmbryo` (seqFISH): A subset of cells (embryo 1, z-slice 2) from a previously published dataset investigating mouse embryogenesis by [Lohoff and Ghazanfar et al. (2020)](https://www.biorxiv.org/content/10.1101/2020.11.20.391896v1), generated using the seqFISH platform. The full dataset is [available online](https://marionilab.cruk.cam.ac.uk/SpatialMouseAtlas/).
 
 
 # Install package
 
-The latest versions of the `SpatialExperiment` and `STdata` packages can be installed from GitHub. These will be moved to Bioconductor (devel) in the near future.
-
-In the code below, we have commented out the installation code, so that this is not automatically run when we compile the workshop materials. However, on your own system, you can un-comment these lines and run them to install the packages if necessary.
+The package can be installed from Bioconductor as follows. For this workshop, we use the latest version available in `devel` version of Bioconductor.
 
 ```{r, message=FALSE}
-# install SpatialExperiment package (note "devel" branch)
-# remotes::install_github("drighelli/SpatialExperiment", ref = "devel")
+# BiocManager::install("STexampleData", version = "devel")
+```
 
-# install STdata package
-# remotes::install_github("lmweber/STdata")
+Alternatively, the latest version can also be installed from GitHub:
+
+```{r, message=FALSE}
+# remotes::install_github("lmweber/STexampleData")
 ```
 
 
-# Load data
+# Load dataset
 
-Next, we run a short example showing how to load one of the datasets from the `STdata` package. This will be loaded as a `SpatialExperiment` object. Then, we inspect the object dimensions and structure.
+First, we check the available datasets from the `STexampleData` package stored in Bioconductor's ExperimentHub resource.
+
+```{r, message=FALSE}
+# load packages
+library(ExperimentHub)
+```
+
+```{r}
+# query ExperimentHub resource
+eh <- ExperimentHub()
+query(eh, "STexampleData")
+```
+
+
+Next, we run a short example showing how to load one of the datasets from the `STexampleData` package.
+
+Alternative ways of loading the datasets from ExperimentHub are shown in the package vignette.
 
 ```{r, message=FALSE}
 # load packages
 library(SpatialExperiment)
-library(STdata)
+library(STexampleData)
 ```
 
-```{r, message=FALSE}
-# load data object
-spe <- load_data("mouse_coronal")
+```{r}
+# load dataset
+spe <- Visium_humanDLPFC()
 ```
 
-```{r, message=FALSE}
-# inspect data object
+
+Then, we have a look at the structure of the `SpatialExperiment` object.
+
+```{r}
 spe
 dim(spe)
 assayNames(spe)
 rowData(spe)
 colData(spe)
-spatialCoords(spe)
+spatialData(spe)
+head(spatialCoords(spe))
 imgData(spe)
 ```
 
 
-# Plot data
+# Plot dataset
 
-We can also create a simple plot of the dataset, to check that it has been loaded correctly. We can use plotting functions available in the [ggspavis](https://github.com/lmweber/ggspavis) package.
-
-The [ggspavis](https://github.com/lmweber/ggspavis) package is also available from GitHub, so we install this first (if not already installed).
-
-Then, we load the package, and create a plot.
+Next, we generate some simple plots of the dataset. We can use plotting functions available in the [ggspavis](https://github.com/lmweber/ggspavis) package, which is currently available from GitHub.
 
 ```{r, message=FALSE}
 # install ggspavis package
@@ -89,54 +106,49 @@ Then, we load the package, and create a plot.
 ```
 
 ```{r, message=FALSE}
-# load package
+# load packages
 library(ggspavis)
 ```
 
-```{r, message=FALSE, out.width="65%"}
-# create plot
+
+Create some plots of the dataset in x-y coordinates. This dataset contains a set of manually annotated ground truth labels for cortical layers, which we can use to display annotation on the plot.
+
+```{r, out.width="65%"}
+# plot spots only
 plotSpots(spe)
+```
+
+```{r, out.width="65%"}
+# plot spots with annotation
+plotSpots(spe, annotate = "ground_truth")
+```
+
+
+We can also use a different plotting function to display the spots and annotation along with the histology image as background, which is also stored in the `SpatialExperiment` object. We also highlight spots located over tissue, which are identified with the "in_tissue" column in the `spatialData`.
+
+```{r, out.width="65%"}
+# plots with histology background
+plotVisium(spe)
+plotVisium(spe, fill = "ground_truth", highlight = "in_tissue")
 ```
 
 
 # Exercise
 
-The above plot does not show much -- only the layout of the Visium spots under tissue in this sample. This is useful as a check that the dataset has been loaded correctly, but is not a very interesting plot.
+For some additional practice with these objects, attempt the following:
 
-Next, we will create a more interesting plot showing ground truth cluster labels for a different dataset, and then continue with an exercise to modify this plot to display different information.
+- Generate a plot in x-y coordinates with annotation showing total unique molecular identifier (UMI) counts
+- Generate a plot in x-y coordinates with annotation showing expression of a specific gene of interest, e.g. SNAP25, MOBP, or PCP4
 
-For this exercise, we will use the "human DLPFC" dataset (which contains ground truth cluster labels).
+You can refer to the help files for the plotting functions with `?plotSpots` and `?plotVisium`.
 
-```{r, message=FALSE}
-# load data object
-spe <- load_data("human_DLPFC")
-```
+For a further exercise, try adjusting the color palettes and other plotting options, as described in the help files.
 
-```{r, message=FALSE, out.width="60%"}
-# create basic plot
-plotSpots(spe)
-```
-
-```{r, message=FALSE, out.width="70%"}
-# create plot showing ground truth cluster labels
-plotSpots(spe, discrete = "ground_truth", palette = "libd_layer_colors")
-```
-
-
-For the exercise, try to modify this plot to show a continuous color gradient of total UMI counts per spot (instead of ground truth cluster labels).
-
-Below are some hints for how to do this.
-
-- inspect the `spe` object to check how the data is stored (e.g. assays, row data, column data, spatial coordinates)
-- check the help page of the plotting function (with `?plotSpots`) to check the required arguments
-- are the values you need (total counts per spot) stored somewhere in the object? e.g. row data or column data? if not, how could you calculate them and store them in the object, so that the plotting function can access them?
-
-
-<!-- Solution -->
+<!-- Possible solution 1 -->
 <!-- colData(spe)$sum <- colSums(counts(spe)) -->
-<!-- plotSpots(spe, continuous = "sum", palette = "navy") -->
+<!-- plotVisium(spe, fill = "sum") -->
 
-<!-- Alternatively: another similar plot -->
-<!-- (but not the solution; this shows cell counts per spot instead of UMI counts per spot) -->
-<!-- plotSpots(spe, continuous = "cell_count", palette = "navy") -->
+<!-- Possible solution 2 -->
+<!-- id <- rowData(spe)$gene_id[which(rowData(spe)$gene_name == "PCP4")] -->
+<!-- plotVisium(spe, fill = id, assay = "counts") -->
 
