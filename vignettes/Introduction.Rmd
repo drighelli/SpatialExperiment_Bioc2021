@@ -107,7 +107,7 @@ Here is an example of a **Mouse Brain tissue slice** placed on a 10x Visium chip
 <!-- <br> -->
 <br>
 
-<img src="https://github.com/drighelli/EuroBioc2020_SpatialWorkshop/raw/master/inst/imgs/visium_detected_tissue_image.jpg" alt="10x visium mouse brain" width="500"/>
+<img src="https://github.com/drighelli/SpatialExperiment_Bioc2021/raw/master/inst/imgs/visium_detected_tissue_image.jpg" alt="10x visium mouse brain" width="500"/>
 
 <br>
 
@@ -133,8 +133,7 @@ Here is a schematics of the organization of the actual (devel version)
 `SpatialExperiment` class.
 
 <br>
-TO CHANGE
-<img src="https://github.com/drighelli/EuroBioc2020_SpatialWorkshop/raw/master/inst/imgs/SpatialExpeirmentFusedV1.png" alt="The SpatialExperiment class" width="500"/>
+<img src="https://github.com/drighelli/SpatialExperiment_Bioc2021/raw/master/inst/imgs/spe.png" alt="The SpatialExperiment class" width="500"/>
 
 <br>
 
@@ -164,7 +163,7 @@ To simplify your analysis today, you can use the **Docker image** simply by runn
 
 ```{bash eval=FALSE}
 
-docker run -e PASSWORD=<SET_A_PASSWORD> -p 8787:8787 drighelli/eurobioc2020spatialworkshop
+docker run -e PASSWORD=<SET_A_PASSWORD> -p 8787:8787 drighelli/spatialexperiment_bioc2021
 
 ```
 
