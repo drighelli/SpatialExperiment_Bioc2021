@@ -155,6 +155,7 @@ SpatialExperiment proper Methods:
 * *loadImg, unloadImg, addImg, removeImg*: imgData handling methods
 * *spatialCoordsNames*: returns the name of stored spatial coordinates
 * *spatialDataNames*: returns the spatialData colnames
+* *molecules*: dedicated assay for molecule-based data, based on BumpyMatrix class
 
 
 The *SpatialExperiment* class for this workshop is the official Bioconductor *devel* version of it.
@@ -168,15 +169,6 @@ docker run -e PASSWORD=<SET_A_PASSWORD> -p 8787:8787 drighelli/spatialexperiment
 ```
 
 Once docker command finished download and installation, navigate to [https://localhost:8787/](https://localhost:8787/) and then login with rstudio:<YourChosenPassword>.
-
-Alternatively, you can install the devel version of the class with the following commands:
-
-```{r eval=FALSE}
-
-library(remotes)
-BiocManager::install("SpatialExperiment", version="devel")
-
-```
 
 
 # In short
