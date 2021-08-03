@@ -11,11 +11,7 @@ vignette: >
     %\VignetteEncoding{UTF-8}
 ---
 
-```{r message = FALSE, warning = FALSE}
-library(ggplot2)
-library(grid)
-library(SpatialExperiment)
-```
+<style type="text/css"> .smaller { font-size: 10px } </style>
 
 # Reading 10X Visium data
 
@@ -40,7 +36,9 @@ sample
 
 The `SpatialExperiment` package provides an exemplary 10X Visium spatial gene expression data of two serial mouse brain sections (Sagittal-Posterior) available from the [10X Genomics website](https://support.10xgenomics.com/spatial-gene-expression/datasets). These are located in the `extdata/10xVisium` directory:
 
-```{r}
+```{r message = FALSE, warning = FALSE}
+library(SpatialExperiment)
+
 dir <- system.file(
   file.path("extdata", "10xVisium"),
   package = "SpatialExperiment")
@@ -49,167 +47,175 @@ sample_ids <- c("section1", "section2")
 samples <- file.path(dir, sample_ids)
 ```
 
-We can load these data into a `SpatialExperiment` using the `read10xVisium()` function, which will read in all relevant information, including the count data, spatial coordinates, scale factors, and images:
+We can load these data into a `SpatialExperiment` using the `read10xVisium()` function, which will read in all relevant information, including the count data, spatial metadata and coordinates, scale factors, and images:
 
 ```{r}
-
-
 list.files(samples[1])
 list.files(file.path(samples[1], "spatial"))
 
-(ve <- read10xVisium(samples, sample_ids,
+(spe <- read10xVisium(samples, sample_ids,
+  type = "sparse",   # use sparse (not HDF5) format
+  data = "raw",      # read all (not filtered) data
   images = "lowres", # specify which image(s) to include
   load = TRUE))      # specify whether or not to load image(s)
 ```
 
 # The `SpatialExperiment` class
 
-## Spatial data
+## `spatialData` & `-Coords`
 
-Spatial data are stored as observation metadata (`colData`) and include:
+Spatial metadata are stored inside the `int_colData`'s `spatialData` field as a `DataFrame` and include:
 
-* `sample_id` specifying unique sample identifiers
 * `in_tissue` indicating whether an observation was mapped to tissue
-* `x/y_coord` storing spatial coordinates
 * `array_row/col` giving the spots' row/column coordinate in the array[^1]
 
 [^1]: `array_row`s range from 0-77 (78 rows); `array_col`s are even in 0-126 for even rows, and odd in 1-127 for odd rows (64 columns), giving in $78 \times 64 = 4,992$ spots per sample.
 
-A `DataFrame` of spatially-related data can be accessed using the `spatialCoords()` accessor:
-
-    ```{r}
-head(spatialCoords(ve))
-```
-
-Alternatively, we can access these data using `colData()` or, even simpler, the `$` accessor:
-
-    ```{r}
+```{r}
+head(spatialData(spe))
 # tabulate number of spots mapped to tissue
 table(
-    in_tissue = ve$in_tissue,
-    sample_id = ve$sample_id)
+    sample_id = spe$sample_id,
+    in_tissue = spatialData(spe)$in_tissue)
 ```
 
-## Image data
+A numeric matrix of spatial coordinates (here, x and y) is stored inside the `int_colData`'s `spatialCoords` field, and can be accessed using the `spatialCoords()` accessor:
+
+```{r}
+head(spatialCoords(spe))
+```
+
+Note that the `colData`, `spatialData`, and `spatialCoords` slots follow a hierarchical structure where `colData` > `spatialData` > `spatialCoords`. Here, each accessor function allows joint accession of the target slot, and (optionally) any slot(s) that precedes it.
+
+Specifically, the following commands are supported may be used to access specific subsets of (spatial) metadata associated with each column (observation, e.g. spots or cells) in a SPE:
+
+```{r results = "hide"}
+spatialCoords(spe)
+
+spatialData(spe)
+spatialData(spe, spatialCoords = TRUE)
+
+colData(spe, spatialData = TRUE)
+colData(spe, spatialCoords = TRUE)
+colData(spe, spatialData = TRUE, spatialCoords = TRUE)
+```
+
+## `imgData`
 
 Image-related data are stored in the `int_metadata`'s `imgData` field as a `DataFrame` with the following columns:
 
 * `sample_id` and `image_id` specifying the image's sample and image identifier
-* `data`: a list of `SpatialImage`s containing the image's `grob`, path and/or URL
-* `width` and `height` giving the image's dimension (in pixel)
-* `scaleFactor` used to rescale spatial coordinates according to the image's resolution
+* `data` is a list of `SpatialImage`s containing the image's `grob`, path and/or URL
+* `scaleFactor`s are used to rescale spatial coordinates according to the image's resolution
 
 We can retrieve these data using the `imgData()` accessor:
 
 ```{r}
-imgData(ve)
+imgData(spe)
 ```
 
 # The `SpatialImage` class
 
-Images inside a `SpatialExperiment`'s `imgData` are stored as objects of class `SpatialImage`. These contain three slots that can accommodate any available information associated with an image:
+Images inside a `SpatialExperiment`'s `imgData` are stored as objects of class `SpatialImage`. The `SpatialImage` class hierarchy provides representations of images from a variety of sources, including:
 
-    * `@grob`: NULL or an object class `rastergrob` from the `grid` package
-* `@path`: NULL or a character strings specifying an image file name (.png, .jpg or .tif)
-* `@url`: NULL or a character string specifying an URL from which to retrieve the image
+* `LoadedSpatialImage`: an image that is fully realized into memory, where the raster representation is stored inside the output object.
+* `RemoteSpatialImage`: an image that is remotely hosted and retrieved only on request.
+* `StoredSpatialImage`: an image that is stored in a local file and is loaded into memory only on request.
 
 A list of `SpatialImage`s can be retrieved from the `imgData`'s `data` field using the `$` accessor:
 
 ```{r}
-imgData(ve)$data
+imgData(spe)$data
 ```
 
-Data available in an object of class `SpatialImage` may be accessed via the `imgGrob()`, `imgPath()` and `imgUrl()` accessors:
+For `StoredSpatialImage` and `RemoteSpatialImage` objects, loading the image with `imgRaster()` (see next section) will automatically store the loaded `raster` object in an in-memory cache. Any subsequent `imgRaster()` call will retrieve the `raster` from the cache, avoiding costly retrieval from the file system.
 
-```{r}
-si <- imgData(ve)$data[[1]]
-imgGrob(si)
-imgPath(si)
-imgUrl(si)
-```
+This provides the option to store an image's source at minimal storage cost, which is desirable when multiple images are to be stored (say, for many samples and of different resolutions), or when a `SpatialExperiment` is to be exported.
 
-`grob`s can be used directly for plotting (e.g. using `grid.draw()` or `ggplot2`'s `layer()` and `annotation_custom()`):
-
-    ```{r fig.small = TRUE}
-si <- imgData(ve)$data[[1]]
-grid.draw(imgGrob(si))
-```
-
-`path` and `url` provide the option to store an image's source at minimal storage cost. This is desirable when multiple images are to be stored (say, for many samples and of different resolutions), or when a `SpatialExperiment` is to be exported.
-
-# Methods for image handling
+## Methods for image handling
 
 The `SpatialExperiment` package provides various functions to handle which and how image data is stored in the object. These include:
 
-* `loadImg` to actively load (an) image(s) from a path or URL and store it as a `grob`
-* `unloadImg` to drop the `grob`, while retaining the source path and/or URL
-* `addImg` to add a new image entry (as a path, URL, or `grob`)
-* `removeImg` to drop an image entry entirely
+* `get/add/rmvImg` to retrieve/add/remove (an) image(s) from a `SpatialExperiment`
+* `imgSource/Raster` to retrieve the path/URL or `raster` object associated with (an) image(s)
 
-## Loading & unloading images
-
-`loadImg()` and `add/removeImg()` are flexible in the specification of the `sample/image_id` arguments. Specifically,
+`get/rmvImg()` and `imgSource/Raster()` are flexible in the specification of the `sample/image_id` arguments. Specifically,
 
 - `TRUE` is equivalent to *all*, e.g. `sample_id = "<sample>", image_id = TRUE` will drop all images for a given sample.
 - `NULL` defaults to the first entry available, e.g., `sample_id = "<sample>", image_id = NULL` will drop the first image for a given sample.
 
 For example, `sample_id,image_id = TRUE,TRUE` will specify all images; `NULL,NULL` corresponds to the first image entry in the `imgData`; `TRUE,NULL` equals the first image for all samples; and `NULL,TRUE` matches all images for the first sample.
 
-In the example below, we unload all images, i.e., drop all `grob`s. As a result, `grob` slots will be set to `NULL`, and all `SpatialImage`s now say `> not loaded`.
+### `raster` & source accession
+
+Data available in an object of class `SpatialImage` may be accessed via the `imgRaster()` and `imgSource()` accessors. Note that, since our images are `LoadedSpatialImage`s, there source is `NA`:
 
 ```{r}
-ve <- unloadImg(ve, sample_id = TRUE, image_id = TRUE)
-imgData(ve)$data
+si <- imgData(spe)$data[[1]]
+head(imgRaster(si)[, 1:4])
+imgSource(si)
 ```
 
-We can again reload a single or set of images using `loadImg()`:
+Using `as.raster()` or, equivalently, the `imgRaster()` accessor, a `SpatialImage` may be converted to a `raster` object, which can be used directly for plotting:
+
+```{r fig.small = TRUE}
+img1 <- as.raster(si)
+img2 <- imgRaster(si)
+identical(img1, img2)
+par(mar = c(0,0,0,0))
+plot(img1)
+```
+
+In the example below, we access *all* images as `raster` objects (via setting `sample_id = image_id = TRUE`):
 
 ```{r}
-ve <- loadImg(ve, sample_id = "section2")
-imgData(ve)$data
+imgs <- imgRaster(spe, sample_id = TRUE, image_id = TRUE)
+sapply(imgs, \(.) c(dim = dim(.), class = class(.)))
 ```
 
-## Adding & removing images
+### Adding & removing images
 
 Besides a path or URL to source the image from and a numeric scale factor, `addImg()` requires specification of the `sample_id` the new image belongs to, and an `image_id` that is not yet in use for that sample:
 
 ```{r fig.small=TRUE}
 url <- "https://i.redd.it/3pw5uah7xo041.jpg"
-ve <- addImg(ve,
-  sample_id = "section1", image_id = "pomeranian",
-  imageSource = url, scaleFactor = NA_real_, load = TRUE)
+spe <- addImg(spe,
+    sample_id = "section1", 
+    image_id = "pomeranian",
+    imageSource = url, 
+    scaleFactor = NA_real_, 
+    load = TRUE)
 ```
 
 The above code chunk has added an new image entry in the input `SpatialExperiment`'s `imgData` field:
-    ```{r}
-imgData(ve)
+
+```{r fig.small = TRUE}
+imgData(spe)
+img <- imgRaster(spe,
+    sample_id = "section1",
+    image_id = "pomeranian")
+plot(img)
 ```
 
-```{r fig.small=TRUE}
-grb <- imgGrob(ve,
-               sample_id = "section1",
-               image_id = "pomeranian")
-grid.draw(grb)
+We can remove specific images with `rmvImg()`:
+
+```{r}
+spe <- rmvImg(spe,
+    sample_id = "section1",
+    image_id = "pomeranian")
+imgData(spe)
 ```
 
-We can remove specific images with `removeImg()`:
+# `sample_id` replacement
 
-    ```{r}
-ve <- removeImg(ve,
-                sample_id = "section1",
-                image_id = "pomeranian")
-imgData(ve)
-```
+While storing of `sample_id`s inside the `SpatialExperiment`'s `colData` enables direct accessibility via the `colData` and `$` accessors, this field is protected against arbitrary modification. This affects operations to the following effects:
 
-# `colData` replacement
+Empty replacement will retain sample identifiers:
 
-While storing of `sample_id`s, the `in_tissue` indicator, and spatial `x/y_coords` inside the `SpatialExperiment`'s `colData` enables direct accessibility via the `colData` and `$` accessors, these fields are protected against arbitrary modification. This affects operations to the following effects:
-
-Renaming is generally not permitted:
-
-```{r error = TRUE}
-i <- grep("x|y_coord", names(colData(ve)))
-names(colData(ve))[i] <- "foo"
+```{r}
+tmp <- spe$sample_id
+spe$sample_id <- NULL
+identical(tmp, spe$sample_id)
 ```
 
 Replacement of `sample_id`s is permitted provided that
@@ -218,32 +224,21 @@ i. the number of unique sample identifiers is retained
 ii. newly provided sample identifiers are a one-to-one mapping
 
 ```{r error = TRUE}
-ve$sample_id <- sample(c("a", "b", "c"), ncol(ve), TRUE)
-ve$sample_id <- sample(c("a", "b"), ncol(ve), TRUE)
+spe$sample_id <- sample(c("a", "b", "c"), ncol(spe), TRUE)
+spe$sample_id <- sample(c("a", "b"), ncol(spe), TRUE)
 ```
 
 Valid replacement will be propagated to the `imgData`:
 
 ```{r}
-tmp <- ve
-i <- as.numeric(factor(ve$sample_id))
-tmp$sample_id <- c("sample1", "sample2")[i]
+tmp <- spe
+i <- as.numeric(factor(spe$sample_id))
+tmp$sample_id <- c("sampleA", "sampleB")[i]
 imgData(tmp)
 ```
 
-The `x/y_coord` and `in_tissue` fields may be modified provided that the former is a logical vector, and the latter is a two- or three-column numeric matrix:
+# Session info {.smaller}
 
-```{r error = TRUE}
-ve$x_coord <- "x"
-ve$in_tissue <- "x"
+```{r session-info}
+sessionInfo()
 ```
-
-`colData() <- NULL` will retain only required fields, i.e. `sample_id`, `in_tissue` and `x/y_coord`:
-
-```{r}
-names(colData(ve))
-colData(ve) <- NULL
-names(colData(ve))
-```
-
-# Visualization
