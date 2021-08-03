@@ -196,16 +196,14 @@
 <em>spatialCoordsNames</em>: returns the name of stored spatial coordinates</li>
 <li>
 <em>spatialDataNames</em>: returns the spatialData colnames</li>
+<li>
+<em>molecules</em>: dedicated assay for molecule-based data, based on BumpyMatrix class</li>
 </ul>
 <p>The <em>SpatialExperiment</em> class for this workshop is the official Bioconductor <em>devel</em> version of it.</p>
 <p>To simplify your analysis today, you can use the <strong>Docker image</strong> simply by running:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=<span class="op">&lt;</span>SET_A_PASSWORD<span class="op">&gt;</span> -p 8787:8787 drighelli/spatialexperiment_bioc2021</span></code></pre></div>
 <p>Once docker command finished download and installation, navigate to <a href="https://localhost:8787/">https://localhost:8787/</a> and then login with rstudio:<yourchosenpassword>.</yourchosenpassword></p>
-<p>Alternatively, you can install the devel version of the class with the following commands:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"SpatialExperiment"</span>, version<span class="op">=</span><span class="st">"devel"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="in-short" class="section level1">
 <h1 class="hasAnchor">
@@ -221,7 +219,7 @@
 <p>It is a multimodal dataset providing data for <em>seqFISH</em> and <em>scRNAseq</em> data, these data can be combined for multimodal single-cell data integration methods developments, testing and/or analysis.</p>
 <p>More details about an investigation of this dataset can be found at this <a href="https://drighelli.github.io/BIRSBIO2020.seqFISH.SpatialAnalysis/articles/seqFISH.html">link</a>.</p>
 <p>Or you can run:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
 <span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"SingleCellMultiModal"</span><span class="op">)</span>
