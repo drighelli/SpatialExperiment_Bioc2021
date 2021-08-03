@@ -137,11 +137,11 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># query ExperimentHub resource</span>
 <span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## snapshotDate(): 2021-07-30</code></pre>
+<pre><code>## snapshotDate(): 2021-08-03</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"STexampleData"</span><span class="op">)</span></code></pre></div>
-<pre><code>## ExperimentHub with 3 records
-## # snapshotDate(): 2021-07-30
+<pre><code>## ExperimentHub with 6 records
+## # snapshotDate(): 2021-08-03
 ## # $dataprovider: NA
 ## # $species: Mus musculus, Homo sapiens
 ## # $rdataclass: SpatialExperiment
@@ -153,7 +153,10 @@
 ##            title              
 ##   EH5443 | Visium_humanDLPFC  
 ##   EH5444 | Visium_mouseCoronal
-##   EH5445 | seqFISH_mouseEmbryo</code></pre>
+##   EH5445 | seqFISH_mouseEmbryo
+##   EH6708 | Visium_humanDLPFC  
+##   EH6709 | Visium_mouseCoronal
+##   EH6710 | seqFISH_mouseEmbryo</code></pre>
 <p>Next, we run a short example showing how to load one of the datasets from the <code>STexampleData</code> package.</p>
 <p>Alternative ways of loading the datasets from ExperimentHub are shown in the package vignette.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
