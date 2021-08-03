@@ -56,6 +56,12 @@
 <li>
       <a href="../articles/Introduction.html">1. Introduction to Spatial Transcriptomics</a>
     </li>
+    <li>
+      <a href="../articles/STexampleData.html">3. The STexampleData package</a>
+    </li>
+    <li>
+      <a href="../articles/SpatialExperiment.html">2. The SpatialExperiment class</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -146,7 +152,7 @@
 <!-- <img src="https://github.com/drighelli/EuroBioc2020_SpatialWorkshop/raw/master/inst/imgs/visium_tissue_lowres_image.png" alt="10x visium mouse brain" width="500"/> -->
 <!-- <br> -->
 <p><br></p>
-<p><img src="https://github.com/drighelli/EuroBioc2020_SpatialWorkshop/raw/master/inst/imgs/visium_detected_tissue_image.jpg" alt="10x visium mouse brain" width="500"></p>
+<p><img src="https://github.com/drighelli/SpatialExperiment_Bioc2021/raw/master/inst/imgs/visium_detected_tissue_image.jpg" alt="10x visium mouse brain" width="500"></p>
 <p><br></p>
 <p>While we take a snapshot in full resolution of the on-chip placed tissue slice, the unique barcoded-spots <strong>do cDNA amplification</strong> of the transcripts.</p>
 <p>In such a way, at the end, we have an <strong>image reference</strong> of the experiment and a <strong>whole transcriptome</strong> amplification per each spot.</p>
@@ -159,7 +165,7 @@
 <a href="#the-spatialexperiment-class" class="anchor"></a>The SpatialExperiment class</h1>
 <p>To facilitate the implementation of methodologies and spatial data handling in R, we designed a new class named <a href="https://bioconductor.org/packages/SpatialExperiment/"><code>SpatialExperiment</code></a>. This class inherits from the popular Bioconductor class <a href="https://bioconductor.org/packages/SingleCellExperiment"><code>SingleCellExperiment</code></a> and extends it with specific slots and get/set methods for spatial data.</p>
 <p>Here is a schematics of the organization of the actual (devel version) <code>SpatialExperiment</code> class.</p>
-<p><br> TO CHANGE <img src="https://github.com/drighelli/EuroBioc2020_SpatialWorkshop/raw/master/inst/imgs/SpatialExpeirmentFusedV1.png" alt="The SpatialExperiment class" width="500"></p>
+<p><br><img src="https://github.com/drighelli/SpatialExperiment_Bioc2021/raw/master/inst/imgs/spe.png" alt="The SpatialExperiment class" width="500"></p>
 <p><br></p>
 <p>The class is organized around the <strong>assays</strong> data structure (more details in part 2):</p>
 <p>Attributes:</p>
@@ -194,7 +200,7 @@
 <p>The <em>SpatialExperiment</em> class for this workshop is the official Bioconductor <em>devel</em> version of it.</p>
 <p>To simplify your analysis today, you can use the <strong>Docker image</strong> simply by running:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=<span class="op">&lt;</span>SET_A_PASSWORD<span class="op">&gt;</span> -p 8787:8787 drighelli/eurobioc2020spatialworkshop</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=<span class="op">&lt;</span>SET_A_PASSWORD<span class="op">&gt;</span> -p 8787:8787 drighelli/spatialexperiment_bioc2021</span></code></pre></div>
 <p>Once docker command finished download and installation, navigate to <a href="https://localhost:8787/">https://localhost:8787/</a> and then login with rstudio:<yourchosenpassword>.</yourchosenpassword></p>
 <p>Alternatively, you can install the devel version of the class with the following commands:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
