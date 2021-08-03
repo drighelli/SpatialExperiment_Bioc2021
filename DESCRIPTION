@@ -66,7 +66,6 @@ Suggests:
     rmarkdown,
     pkgdown
 Remotes:
-    drighelli/SpatialExperiment@master,
     lmweber/STexampleData@main,
     lmweber/ggspavis@main
 URL: https://drighelli.github.io/SpatialExperiment_Bioc2021/
