@@ -67,6 +67,9 @@ Suggests:
     rmarkdown,
     pkgdown
 Remotes:
+    drighelli/SpatialExperiment@master,
+    HelenaLC/TENxVisiumData,
+    lmweber/STexampleData@main,
     lmweber/ggspavis@main
 URL: https://drighelli.github.io/SpatialExperiment_Bioc2021/
 BugReports: https://github.com/drighelli/SpatialExperiment_Bioc2021/issues/new/
