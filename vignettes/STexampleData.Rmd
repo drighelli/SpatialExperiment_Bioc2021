@@ -81,7 +81,7 @@ library(STexampleData)
 spe <- load_data("Visium_humanDLPFC")
 
 # alternatively: load dataset from ExperimentHub
-spe <- Visium_humanDLPFC()
+# spe <- Visium_humanDLPFC()
 ```
 
 
