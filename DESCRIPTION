@@ -68,7 +68,6 @@ Suggests:
     pkgdown
 Remotes:
     drighelli/SpatialExperiment@master,
-    HelenaLC/TENxVisiumData@master,
     lmweber/STexampleData@main,
     lmweber/ggspavis@main
 URL: https://drighelli.github.io/SpatialExperiment_Bioc2021/
