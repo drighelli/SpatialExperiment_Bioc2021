@@ -108,11 +108,11 @@
 <div id="bioc2021-spatialexperiment-workshop" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#bioc2021-spatialexperiment-workshop" class="anchor"></a>Bioc2021 SpatialExperiment Workshop</h1></div>
-<p>This three-parts workshop provides basics backgroud and the instruments to start to work with spatial transcriptomics with R/Bioconductor.</p>
-<p>The first part is an overview of the most widely used technologies for spatially resolved transcriptomics, such as seqFISH and 10x Genomics Visium, and the main differences between them.</p>
-<p>The second part is mainly focused on the <code>SpatialExperiment</code> class and how to handle its methods for storing and retrieving spatial coordinates, images, and how to manage them.</p>
-<p>The third part will show how to store/retrieve already stored spatial datasets from the <code>STexampleData</code> and <code>10xVisiumData</code> packages and how to generate plots with <code>ggspavis</code>.</p>
-<p>The workshop will end with a mini-challenge for the attendees to handle with provided tools during the sessions.</p>
+<p>This three-part workshop provides background and tools to start working with spatially resolved transcriptomics data with R/Bioconductor.</p>
+<p>The first part is an overview of the most widely used technologies for spatially resolved transcriptomics, such as 10x Genomics Visium and seqFISH, and the main differences between them.</p>
+<p>The second part is focused on the <code>SpatialExperiment</code> class and how to handle its methods for storing and retrieving spatial coordinates, images, and how to manage them.</p>
+<p>The third part will show how to retrieve datasets in <code>SpatialExperiment</code> format from the <code>STexampleData</code> and <code>10xVisiumData</code> packages, and how to generate plots with the <code>ggspavis</code> package.</p>
+<p>The workshop will end with a mini-challenge for attendees using the tools provided during the sessions.</p>
 </div>
 <div id="authors" class="section level1">
 <h1 class="hasAnchor">
@@ -136,22 +136,22 @@
 </div>
 <div id="available-resources" class="section level1">
 <h1 class="hasAnchor">
-<a href="#available-resources" class="anchor"></a>Available Resources</h1>
+<a href="#available-resources" class="anchor"></a>Available resources</h1>
 <ul>
 <li>Link to the <code>pkgdown</code> <a href="https://drighelli.github.io/SpatialExperiment_Bioc2021/">website</a>.</li>
 <li>Link to <a href="https://hub.docker.com/r/drighelli/spatialexperiment_bioc2021">Docker image</a>.</li>
-<li>The <code>SpatialExperiment</code> <a href="https://bioconductor.org/packages/SpatialExperiment/">link</a>.</li>
+<li>The <code>SpatialExperiment</code> package <a href="https://bioconductor.org/packages/SpatialExperiment/">link</a>.</li>
 <li>The <code>STexampleData</code> package <a href="https://bioconductor.org/packages/STexampleData">link</a>.</li>
 <li>The <code>TENxVisiumData</code> package <a href="https://bioconductor.org/packages/TENxVisiumData">link</a>.</li>
 <li>The <code>ggspavis</code> package <a href="https://github.com/lmweber/ggspavis">link</a>.</li>
 </ul>
-<div id="to-use-the-docker-image" class="section level2">
-<h2 class="hasAnchor">
-<a href="#to-use-the-docker-image" class="anchor"></a>To use the Docker image:</h2>
-<p>We highly suggest to use the docker image within all the needed material.</p>
+</div>
+<div id="to-use-the-docker-image" class="section level1">
+<h1 class="hasAnchor">
+<a href="#to-use-the-docker-image" class="anchor"></a>To use the Docker image:</h1>
+<p>We highly recommend using the Docker image, which contains all the needed material.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=<span class="op">&lt;</span>SET_A_PASSWORD<span class="op">&gt;</span> -p 8787:8787 drighelli/spatialexperiment_bioc2021</span></code></pre></div>
 <p>Once running, navigate to <a href="https://localhost:8787/" class="uri">https://localhost:8787/</a> and then login with <code>rstudio</code>:<code>&lt;YourChosenPassword&gt;</code>.</p>
-</div>
 </div>
 
   </div>
