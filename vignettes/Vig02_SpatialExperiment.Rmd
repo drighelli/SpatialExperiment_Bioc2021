@@ -15,7 +15,7 @@ vignette: >
 
 # Reading 10X Visium data
 
-The 10X Genomics' *CellRanger* pipeline will process data using standard output file formats that are saved, for each sample, in a single directory `/<sample>/outs/` of the following structure:
+The 10X Genomics' *Space Ranger* pipeline will process data using standard output file formats that are saved, for each sample, in a single directory `/<sample>/outs/` of the following structure:
 
 ```{bash eval = FALSE}
 sample
