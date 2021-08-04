@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SpatialExperimentBioc2021</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -122,10 +122,10 @@
 <a href="#install-package" class="anchor"></a>Install package</h1>
 <p>The package can be installed from Bioconductor as follows.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># BiocManager::install("STexampleData", version = "devel")</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"STexampleData"</span>, version <span class="op">=</span> <span class="st">"devel"</span><span class="op">)</span></code></pre></div>
 <p>Alternatively, the latest version can also be installed from GitHub. For this workshop, we use the latest development version from GitHub.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># remotes::install_github("lmweber/STexampleData")</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"lmweber/STexampleData"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="load-dataset" class="section level1">
 <h1 class="hasAnchor">
@@ -167,7 +167,7 @@
 <code class="sourceCode R"><span class="co"># load dataset from latest development version</span>
 <span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/STexampleData/man/load_data.html">load_data</a></span><span class="op">(</span><span class="st">"Visium_humanDLPFC"</span><span class="op">)</span>
 
-<span class="co"># alternatively: load dataset from ExperimentHub</span>
+<span class="co"># alternatively: load from ExperimentHub using named accessor function</span>
 <span class="co"># spe &lt;- Visium_humanDLPFC()</span></code></pre></div>
 <p>Then, we have a look at the structure of the <code>SpatialExperiment</code> object.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -276,14 +276,14 @@
 <div id="plot-dataset" class="section level1">
 <h1 class="hasAnchor">
 <a href="#plot-dataset" class="anchor"></a>Plot dataset</h1>
-<p>Next, we generate some simple plots of the dataset. We can use plotting functions available in the <a href="https://github.com/lmweber/ggspavis">ggspavis</a> package, which is currently available from GitHub.</p>
+<p>Next, we generate some simple plots of the dataset. We can use plotting functions available in the <a href="https://github.com/lmweber/ggspavis">ggspavis</a> package, which is available from GitHub.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install ggspavis package</span>
-<span class="co"># remotes::install_github("lmweber/ggspavis")</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"lmweber/ggspavis"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load packages</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lmweber/ggspavis">ggspavis</a></span><span class="op">)</span></code></pre></div>
-<p>Create some plots of the dataset in x-y coordinates. This dataset contains a set of manually annotated ground truth labels for cortical layers, which we can use to display annotation on the plot.</p>
+<p>Create some plots of the dataset in x-y coordinates. This dataset contains a set of manually annotated ground truth labels for cortical layers in the human brain, which we can use to display annotation on the plot.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># plot spots only</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggspavis/man/plotSpots.html">plotSpots</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></code></pre></div>
@@ -292,7 +292,7 @@
 <code class="sourceCode R"><span class="co"># plot spots with annotation</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggspavis/man/plotSpots.html">plotSpots</a></span><span class="op">(</span><span class="va">spe</span>, annotate <span class="op">=</span> <span class="st">"ground_truth"</span><span class="op">)</span></code></pre></div>
 <p><img src="STexampleData_files/figure-html/unnamed-chunk-11-1.png" width="65%"></p>
-<p>We can also use a different plotting function to display the spots and annotation along with the histology image as background, which is also stored in the <code>SpatialExperiment</code> object. We also highlight spots located over tissue, which are identified with the “in_tissue” column in the <code>spatialData</code>.</p>
+<p>We can also use a more flexible plotting function to display the spots and annotation along with the histology image as background, which is stored in the <code>SpatialExperiment</code> object. We also highlight spots located over tissue, which are identified with the “in_tissue” column in the <code>spatialData</code>.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># plots with histology background</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggspavis/man/plotVisium.html">plotVisium</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></code></pre></div>
@@ -313,10 +313,10 @@
 <p>For a further exercise, try adjusting the color palettes and other plotting options, as described in the help files.</p>
 <!-- Possible solution 1 -->
 <!-- colData(spe)$sum <- colSums(counts(spe)) -->
-<!-- plotVisium(spe, fill = "sum") -->
+<!-- plotVisium(spe, fill = "sum", highlight = "in_tissue") -->
 <!-- Possible solution 2 -->
 <!-- id <- rowData(spe)$gene_id[which(rowData(spe)$gene_name == "PCP4")] -->
-<!-- plotVisium(spe, fill = id, assay = "counts") -->
+<!-- plotVisium(spe, fill = id, highlight = "in_tissue", assay = "counts") -->
 </div>
   </div>
 
