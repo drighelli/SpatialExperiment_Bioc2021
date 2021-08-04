@@ -1,5 +1,6 @@
 Package: SpatialExperimentBioc2021
-Title: SpatialExperiment: infrastructure for spatially resolved transcriptomics data in R using Bioconductor
+Title: SpatialExperiment: infrastructure for spatially resolved transcriptomics 
+    data in R using Bioconductor
 Version: 0.1.1
 Authors@R: 
     c(person(given = "Dario",
@@ -17,37 +18,27 @@ Authors@R:
            role = c("aut"),
            email = "lukas.weber@jhu.edu",
            comment = c(ORCID = "0000-0002-3282-1730")))
-Description: Cells spatial organization within tissues is important for the 
-    understanding of cell communications and interactions in developmental, 
-    physiological, and pathological states.
-    Lately several technologies are emerging for the joint extraction of
-    transcripts quantification and their spatial organization at single cell level.
-    Among others, seqFISH and 10x Visium Spatial Gene Expression (VSGE) seem to be 
-    the most widely used platforms because of their ability to extract hundreds to 
-    thousands of transcripts at the same time in the first case and for the standard 
-    protocol implemented in the latter.
-    Briefly, seqFISH combines temporal barcodes in multiple hybridization rounds 
-    with microscopy fluorescent imaging to detect the spatial coordinates of
-    transcripts.
-    On the other hand, VSGE allows the joint analysis of microscopy images of a
-    chip-placed frozen piece of tissue and its transcriptome at spot-barcode level.
-    Given the lack of dedicated general tools for spatial transcriptomics, 
-    we developed the SpatialExperiment Bioconductor package, which presents a
-    set of two dedicated classes (SpatialExperiment and VisiumExperiment) both 
-    extending the SingleCellExperiment Bioconductor class with slots and methods 
-    for spatial transcriptomics data handling.
-    This work could become the basis for facilitating further development of
-    methods aimed to analyze this type of data, e.g., for spatial clustering 
-    and the identification of spatially variable genes.
-    Here, we present a short workshop showing how to analyze spatial transcriptomics
-    with our SpatialExperiment package and how to use it in combination with other 
-    analysis software.
-    We will start by showing how to combine a SpatialExperiment with a 
-    SingleCellExperiment to store multimodal datasets such as seqFISH 
-    and scRNAseq and how to manage them to graphically visualize the data.
-    Additionally, we will show how to create a VisiumExperiment object 
-    starting from 10x Genomics public datasets and how to manage it for 
-    clustering annotation and plotting. 
+Description: Spatially resolved transcriptomics is a new set of technologies to 
+    measure gene expression for up to thousands of genes at near-single-cell, 
+    single-cell, or sub-cellular resolution, together with the spatial positions 
+    of the measurements. Analyzing combined molecular and spatial information 
+    has generated new insights about biological processes that manifest in a 
+    spatial manner within tissues. However, to efficiently analyze these data, 
+    specialized data infrastructure is required, which facilitates storage, 
+    retrieval, subsetting, and interfacing with downstream tools. 
+    SpatialExperiment is a new data infrastructure for storing and accessing 
+    spatially resolved transcriptomics data, implemented within the Bioconductor 
+    framework in R. SpatialExperiment extends the existing SingleCellExperiment 
+    for single-cell data, which brings with it advantages of modularity, 
+    interoperability, standardized operations, and comprehensive documentation. 
+    SpatialExperiment is extendable to alternative technological platforms 
+    measuring expression and to new types of data modalities, such as spatial 
+    immunofluorescence or proteomics, in the future.
+    In this workshop, we provide an overview of spot-based and molecule-based 
+    spatially resolved transcriptomics technologies, an introduction to 
+    SpatialExperiment, an explanation of the structure of the SpatialExperiment 
+    class, and interactive examples showing how to load and visualize datasets 
+    that have been formatted as SpatialExperiment objects.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
