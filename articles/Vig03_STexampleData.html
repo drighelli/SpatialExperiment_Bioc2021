@@ -54,13 +54,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Introduction.html">1. Introduction to Spatial Transcriptomics</a>
+      <a href="../articles/Vig01_Introduction.html">1. Introduction to Spatial Transcriptomics</a>
     </li>
     <li>
-      <a href="../articles/STexampleData.html">3. The STexampleData package</a>
+      <a href="../articles/Vig02_SpatialExperiment.html">2. The SpatialExperiment class</a>
     </li>
     <li>
-      <a href="../articles/SpatialExperiment.html">2. The SpatialExperiment class</a>
+      <a href="../articles/Vig03_STexampleData.html">3. The STexampleData package</a>
     </li>
   </ul>
 </li>
@@ -82,7 +82,7 @@
 
       
 
-      </header><script src="STexampleData_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="Vig03_STexampleData_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>3. The STexampleData package</h1>
@@ -92,8 +92,8 @@
       </address>
                   
       
-      <small class="dont-index">Source: <a href="https://github.com/drighelli/SpatialExperiment_Bioc2021/blob/master/vignettes/STexampleData.Rmd"><code>vignettes/STexampleData.Rmd</code></a></small>
-      <div class="hidden name"><code>STexampleData.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/drighelli/SpatialExperiment_Bioc2021/blob/master/vignettes/Vig03_STexampleData.Rmd"><code>vignettes/Vig03_STexampleData.Rmd</code></a></small>
+      <div class="hidden name"><code>Vig03_STexampleData.Rmd</code></div>
 
     </div>
 
@@ -287,19 +287,19 @@
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># plot spots only</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggspavis/man/plotSpots.html">plotSpots</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></code></pre></div>
-<p><img src="STexampleData_files/figure-html/unnamed-chunk-10-1.png" width="65%"></p>
+<p><img src="Vig03_STexampleData_files/figure-html/unnamed-chunk-10-1.png" width="65%"></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># plot spots with annotation</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggspavis/man/plotSpots.html">plotSpots</a></span><span class="op">(</span><span class="va">spe</span>, annotate <span class="op">=</span> <span class="st">"ground_truth"</span><span class="op">)</span></code></pre></div>
-<p><img src="STexampleData_files/figure-html/unnamed-chunk-11-1.png" width="65%"></p>
+<p><img src="Vig03_STexampleData_files/figure-html/unnamed-chunk-11-1.png" width="65%"></p>
 <p>We can also use a more flexible plotting function to display the spots and annotation along with the histology image as background, which is stored in the <code>SpatialExperiment</code> object. We also highlight spots located over tissue, which are identified with the “in_tissue” column in the <code>spatialData</code>.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># plots with histology background</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggspavis/man/plotVisium.html">plotVisium</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></code></pre></div>
-<p><img src="STexampleData_files/figure-html/unnamed-chunk-12-1.png" width="65%"></p>
+<p><img src="Vig03_STexampleData_files/figure-html/unnamed-chunk-12-1.png" width="65%"></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggspavis/man/plotVisium.html">plotVisium</a></span><span class="op">(</span><span class="va">spe</span>, fill <span class="op">=</span> <span class="st">"ground_truth"</span>, highlight <span class="op">=</span> <span class="st">"in_tissue"</span><span class="op">)</span></code></pre></div>
-<p><img src="STexampleData_files/figure-html/unnamed-chunk-12-2.png" width="65%"></p>
+<p><img src="Vig03_STexampleData_files/figure-html/unnamed-chunk-12-2.png" width="65%"></p>
 </div>
 <div id="exercise" class="section level1">
 <h1 class="hasAnchor">
