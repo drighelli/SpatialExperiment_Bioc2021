@@ -154,9 +154,9 @@
 <div id="to-use-the-docker-image" class="section level1">
 <h1 class="hasAnchor">
 <a href="#to-use-the-docker-image" class="anchor"></a>To use the Docker image</h1>
-<p>We highly recommend using the Docker image, which contains all the needed material.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=<span class="op">&lt;</span>SET_A_PASSWORD<span class="op">&gt;</span> -p 8787:8787 drighelli/spatialexperiment_bioc2021</span></code></pre></div>
-<p>Once running, navigate to <a href="https://localhost:8787/" class="uri">https://localhost:8787/</a> and then login with <code>rstudio</code>:<code>&lt;YourChosenPassword&gt;</code>.</p>
+<p>We recommend using the Docker image, which contains all required material. Note this is a large download (~1.5 GB).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=abc <span class="at">-p</span> 8787:8787 drighelli/spatialexperiment_bioc2021:latest</span></code></pre></div>
+<p>Once running, navigate to <a href="http://localhost:8787/" class="uri">http://localhost:8787/</a> and then login with username <code>rstudio</code> and password <code>abc</code>.</p>
 </div>
 
   </div>
