@@ -46,7 +46,7 @@ BiocManager::install("STexampleData", version = "devel")
 Alternatively, the latest version can also be installed from GitHub. For this workshop, we use the latest development version from GitHub.
 
 ```{r, eval=FALSE}
-remotes::install_github("lmweber/STexampleData")
+remotes::install_github("lmweber/STexampleData", ref = "no_accessors", build_vignettes = TRUE)
 ```
 
 
@@ -105,7 +105,7 @@ Next, we generate some simple plots of the dataset. We can use plotting function
 
 ```{r, eval=FALSE}
 # install ggspavis package
-remotes::install_github("lmweber/ggspavis")
+remotes::install_github("lmweber/ggspavis", build_vignettes = TRUE)
 ```
 
 ```{r, message=FALSE}
