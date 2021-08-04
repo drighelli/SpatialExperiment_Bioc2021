@@ -58,7 +58,7 @@ Suggests:
     pkgdown
 Remotes:
     drighelli/SpatialExperiment@master,
-    lmweber/STexampleData@main,
+    lmweber/STexampleData@no_accessors,
     lmweber/ggspavis@main
 URL: https://drighelli.github.io/SpatialExperiment_Bioc2021/
 BugReports: https://github.com/drighelli/SpatialExperiment_Bioc2021/issues/new/
