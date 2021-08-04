@@ -49,11 +49,11 @@ https://drighelli.github.io/SpatialExperiment_Bioc2021/index.html
 
 # To use the Docker image
 
-We highly recommend using the Docker image, which contains all the needed material.
+We recommend using the Docker image, which contains all required material. Note this is a large download (~1.5 GB).
 
 ```sh
-docker run -e PASSWORD=<SET_A_PASSWORD> -p 8787:8787 drighelli/spatialexperiment_bioc2021
+docker run -e PASSWORD=abc -p 8787:8787 drighelli/spatialexperiment_bioc2021:latest
 ```
 
-Once running, navigate to https://localhost:8787/ and then login with `rstudio`:`<YourChosenPassword>`.
+Once running, navigate to http://localhost:8787/ and then login with username `rstudio` and password `abc`.
 
