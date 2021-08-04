@@ -39,14 +39,14 @@ The package currently contains the following datasets:
 
 The package can be installed from Bioconductor as follows.
 
-```{r, message=FALSE}
-# BiocManager::install("STexampleData", version = "devel")
+```{r, eval=FALSE}
+BiocManager::install("STexampleData", version = "devel")
 ```
 
 Alternatively, the latest version can also be installed from GitHub. For this workshop, we use the latest development version from GitHub.
 
-```{r, message=FALSE}
-# remotes::install_github("lmweber/STexampleData")
+```{r, eval=FALSE}
+remotes::install_github("lmweber/STexampleData")
 ```
 
 
@@ -80,7 +80,7 @@ library(STexampleData)
 # load dataset from latest development version
 spe <- load_data("Visium_humanDLPFC")
 
-# alternatively: load dataset from ExperimentHub
+# alternatively: load from ExperimentHub using named accessor function
 # spe <- Visium_humanDLPFC()
 ```
 
@@ -101,11 +101,11 @@ imgData(spe)
 
 # Plot dataset
 
-Next, we generate some simple plots of the dataset. We can use plotting functions available in the [ggspavis](https://github.com/lmweber/ggspavis) package, which is currently available from GitHub.
+Next, we generate some simple plots of the dataset. We can use plotting functions available in the [ggspavis](https://github.com/lmweber/ggspavis) package, which is available from GitHub.
 
-```{r, message=FALSE}
+```{r, eval=FALSE}
 # install ggspavis package
-# remotes::install_github("lmweber/ggspavis")
+remotes::install_github("lmweber/ggspavis")
 ```
 
 ```{r, message=FALSE}
@@ -114,7 +114,7 @@ library(ggspavis)
 ```
 
 
-Create some plots of the dataset in x-y coordinates. This dataset contains a set of manually annotated ground truth labels for cortical layers, which we can use to display annotation on the plot.
+Create some plots of the dataset in x-y coordinates. This dataset contains a set of manually annotated ground truth labels for cortical layers in the human brain, which we can use to display annotation on the plot.
 
 ```{r, out.width="65%"}
 # plot spots only
@@ -127,7 +127,7 @@ plotSpots(spe, annotate = "ground_truth")
 ```
 
 
-We can also use a different plotting function to display the spots and annotation along with the histology image as background, which is also stored in the `SpatialExperiment` object. We also highlight spots located over tissue, which are identified with the "in_tissue" column in the `spatialData`.
+We can also use a more flexible plotting function to display the spots and annotation along with the histology image as background, which is stored in the `SpatialExperiment` object. We also highlight spots located over tissue, which are identified with the "in_tissue" column in the `spatialData`.
 
 ```{r, out.width="65%"}
 # plots with histology background
@@ -149,9 +149,9 @@ For a further exercise, try adjusting the color palettes and other plotting opti
 
 <!-- Possible solution 1 -->
 <!-- colData(spe)$sum <- colSums(counts(spe)) -->
-<!-- plotVisium(spe, fill = "sum") -->
+<!-- plotVisium(spe, fill = "sum", highlight = "in_tissue") -->
 
 <!-- Possible solution 2 -->
 <!-- id <- rowData(spe)$gene_id[which(rowData(spe)$gene_name == "PCP4")] -->
-<!-- plotVisium(spe, fill = id, assay = "counts") -->
+<!-- plotVisium(spe, fill = id, highlight = "in_tissue", assay = "counts") -->
 
