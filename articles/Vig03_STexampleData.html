@@ -125,7 +125,7 @@
 <code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"STexampleData"</span>, version <span class="op">=</span> <span class="st">"devel"</span><span class="op">)</span></code></pre></div>
 <p>Alternatively, the latest version can also be installed from GitHub. For this workshop, we use the latest development version from GitHub.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"lmweber/STexampleData"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"lmweber/STexampleData"</span>, ref <span class="op">=</span> <span class="st">"no_accessors"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="load-dataset" class="section level1">
 <h1 class="hasAnchor">
@@ -137,11 +137,11 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># query ExperimentHub resource</span>
 <span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## snapshotDate(): 2021-08-03</code></pre>
+<pre><code>## snapshotDate(): 2021-08-04</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"STexampleData"</span><span class="op">)</span></code></pre></div>
 <pre><code>## ExperimentHub with 6 records
-## # snapshotDate(): 2021-08-03
+## # snapshotDate(): 2021-08-04
 ## # $dataprovider: NA
 ## # $species: Mus musculus, Homo sapiens
 ## # $rdataclass: SpatialExperiment
@@ -150,12 +150,12 @@
 ## #   rdatapath, sourceurl, sourcetype 
 ## # retrieve records with, e.g., 'object[["EH5443"]]' 
 ## 
-##            title              
-##   EH5443 | Visium_humanDLPFC  
-##   EH5444 | Visium_mouseCoronal
-##   EH5445 | seqFISH_mouseEmbryo
-##   EH6708 | Visium_humanDLPFC  
-##   EH6709 | Visium_mouseCoronal
+##            title                   
+##   EH5443 | Visium_humanDLPFC_3_13  
+##   EH5444 | Visium_mouseCoronal_3_13
+##   EH5445 | seqFISH_mouseEmbryo_3_13
+##   EH6708 | Visium_humanDLPFC       
+##   EH6709 | Visium_mouseCoronal     
 ##   EH6710 | seqFISH_mouseEmbryo</code></pre>
 <p>Next, we run a short example showing how to load one of the datasets from the <code>STexampleData</code> package.</p>
 <p>Alternative ways of loading the datasets from ExperimentHub are shown in the package vignette.</p>
@@ -279,7 +279,7 @@
 <p>Next, we generate some simple plots of the dataset. We can use plotting functions available in the <a href="https://github.com/lmweber/ggspavis">ggspavis</a> package, which is available from GitHub.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install ggspavis package</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"lmweber/ggspavis"</span><span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"lmweber/ggspavis"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load packages</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lmweber/ggspavis">ggspavis</a></span><span class="op">)</span></code></pre></div>
