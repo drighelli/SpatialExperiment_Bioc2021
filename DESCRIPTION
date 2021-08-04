@@ -1,7 +1,7 @@
 Package: SpatialExperimentBioc2021
 Title: SpatialExperiment: infrastructure for spatially resolved transcriptomics 
     data in R using Bioconductor
-Version: 0.1.1
+Version: 1.0.0
 Authors@R: 
     c(person(given = "Dario",
            family = "Righelli",
