@@ -18,7 +18,13 @@ with the `ggspavis` package.
 The workshop will end with a mini-challenge for attendees using the tools 
 provided during the sessions.
 
-# Authors:
+
+# Link
+
+https://drighelli.github.io/SpatialExperiment_Bioc2021/index.html
+
+
+# Authors
 
 - [Dario Righelli](github.com/drighelli) (dario.righelli@gmail.com)
 - [Helena L. Crowell](github.com/HelenaLC) (helena.crowell@uzh.ch)
@@ -41,7 +47,7 @@ provided during the sessions.
 - The `ggspavis` package [link](https://github.com/lmweber/ggspavis).
 
 
-# To use the Docker image:
+# To use the Docker image
 
 We highly recommend using the Docker image, which contains all the needed material.
 
