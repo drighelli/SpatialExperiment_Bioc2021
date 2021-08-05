@@ -51,7 +51,8 @@ Depends:
 Imports:
     SpatialExperiment,
     STexampleData,
-    ggspavis
+    ggspavis,
+    DelayedMatrixStats
 Suggests: 
     knitr,
     rmarkdown,
@@ -59,7 +60,8 @@ Suggests:
 Remotes:
     drighelli/SpatialExperiment@master,
     lmweber/STexampleData@no_accessors,
-    lmweber/ggspavis@main
+    lmweber/ggspavis@main,
+    PeteHaitch/DelayedMatrixStats@RELEASE_3_13
 URL: https://drighelli.github.io/SpatialExperiment_Bioc2021/
 BugReports: https://github.com/drighelli/SpatialExperiment_Bioc2021/issues/new/
 VignetteBuilder: knitr
