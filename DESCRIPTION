@@ -47,12 +47,12 @@ RoxygenNote: 7.1.0
 Depends: 
     Biobase,
     grid,
-    ggplot2
+    ggplot2,
+    DelayedMatrixStats
 Imports:
     SpatialExperiment,
     STexampleData,
     ggspavis,
-    DelayedMatrixStats
 Suggests: 
     knitr,
     rmarkdown,
