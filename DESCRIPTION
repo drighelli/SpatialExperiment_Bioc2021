@@ -62,7 +62,7 @@ Remotes:
     drighelli/SpatialExperiment@master,
     lmweber/STexampleData@no_accessors,
     lmweber/ggspavis@main,
-    Bioconductor/MatrixGenerics@7a0f03a30ae44d691ddea78d59160a0fff616871
+    Bioconductor/MatrixGenerics@7a0f03a30ae44d691ddea78d59160a0fff616871,
     PeteHaitch/DelayedMatrixStats@99cdad46dd3db9c204ef7923ef4a6c72b7dce46b
 URL: https://drighelli.github.io/SpatialExperiment_Bioc2021/
 BugReports: https://github.com/drighelli/SpatialExperiment_Bioc2021/issues/new/
