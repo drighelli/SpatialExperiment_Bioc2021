@@ -3,6 +3,8 @@ on: [push, pull_request]
 env:
   cache-version: v1
   repo-name: drighelli/spatialexperiment_bioc2021 # DockerHub image repo used in last section of this file
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   job1:
