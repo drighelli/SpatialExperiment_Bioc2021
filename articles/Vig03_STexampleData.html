@@ -82,7 +82,7 @@
 
       
 
-      </header><script src="Vig03_STexampleData_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="Vig03_STexampleData_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>3. The STexampleData package</h1>
@@ -137,11 +137,11 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># query ExperimentHub resource</span>
 <span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## snapshotDate(): 2021-08-04</code></pre>
+<pre><code>## snapshotDate(): 2021-05-18</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"STexampleData"</span><span class="op">)</span></code></pre></div>
-<pre><code>## ExperimentHub with 6 records
-## # snapshotDate(): 2021-08-04
+<pre><code>## ExperimentHub with 3 records
+## # snapshotDate(): 2021-05-18
 ## # $dataprovider: NA
 ## # $species: Mus musculus, Homo sapiens
 ## # $rdataclass: SpatialExperiment
@@ -153,10 +153,7 @@
 ##            title                   
 ##   EH5443 | Visium_humanDLPFC_3_13  
 ##   EH5444 | Visium_mouseCoronal_3_13
-##   EH5445 | seqFISH_mouseEmbryo_3_13
-##   EH6708 | Visium_humanDLPFC       
-##   EH6709 | Visium_mouseCoronal     
-##   EH6710 | seqFISH_mouseEmbryo</code></pre>
+##   EH5445 | seqFISH_mouseEmbryo_3_13</code></pre>
 <p>Next, we run a short example showing how to load one of the datasets from the <code>STexampleData</code> package.</p>
 <p>Alternative ways of loading the datasets from ExperimentHub are shown in the package vignette.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
